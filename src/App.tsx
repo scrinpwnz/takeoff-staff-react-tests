@@ -11,7 +11,7 @@ const App = () => {
     return (
         <main className={classes.root}>
             <CssBaseline/>
-            <Container fixed maxWidth={'sm'} className={classes.container}>
+            <Container fixed maxWidth={'xs'} className={classes.container}>
                 {/*<ClassToFunctional/>*/}
                 <ImageLoadingProblem/>
             </Container>
