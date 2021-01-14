@@ -1,7 +1,7 @@
 import {Button} from "@material-ui/core";
 import React, {FC, useState} from 'react'
 import DataTable from "../organisms/DataTable";
-import {useStyles} from "./syles";
+import {useStyles} from "../../../imageLoadingProblem/ui/page/syles";
 
 interface Props {
 
