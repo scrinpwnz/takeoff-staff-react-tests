@@ -1,4 +1,4 @@
-import faker from 'faker'
+import faker from 'faker';
 import {IData} from "./dto";
 import {sleep} from "../../../helpers";
 

@@ -1,16 +1,12 @@
 import React, {FC, useEffect, useState} from 'react'
 import {useStyles} from "./syles";
-import {Paper} from "@material-ui/core";
+import {Box, Divider, Paper, Typography} from "@material-ui/core";
 import DataGrid from "../organisms/DataGrid";
 import {IObject} from "../../api/dto";
-import {fetchObjects, addImageUrlToObject} from "../../api";
+import {addImageUrlToObject, fetchObjects} from "../../api";
 import {TWithImg} from "../../interfaces";
 
-interface Props {
-
-}
-
-const ImageLoadingProblem: FC<Props> = props => {
+const ImageLoadingProblem: FC = () => {
 
     const classes = useStyles()
 
@@ -22,10 +18,10 @@ const ImageLoadingProblem: FC<Props> = props => {
     }, [])
 
     useEffect(() => {
-        console.log('Загрузка картинок')
         if (isDataLoaded) {
             loadImages()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isDataLoaded])
 
     const fetchData = async () => {
@@ -37,20 +33,29 @@ const ImageLoadingProblem: FC<Props> = props => {
 
     const loadImages = () => {
         Promise.all(data.map(async (item, index) => {
-            // const newData = [...data]
-            // newData[index] = await addImageUrlToObject(data[index])
-            // setData(data)
-            const objectWithImg = await addImageUrlToObject(data[index])
-            setData(prevData => {
-                prevData[index] = objectWithImg
-                return [...prevData]
-            })
+            const newData = [...data]
+            newData[index] = await addImageUrlToObject(newData[index])
+            setData(newData)
         }))
     }
 
     return (
         <Paper elevation={6} className={classes.root}>
-            <DataGrid data={data}/>
+            <Box className={classes.taskContainer}>
+                <Typography variant={'h4'} color={'secondary'}>
+                    TypeScript
+                </Typography>
+                <Typography variant={'h5'} color={'primary'}>
+                    Задание 2
+                </Typography>
+                <Typography variant={'body2'}>
+                    Решить проблему с загрузкой картинок.
+                </Typography>
+            </Box>
+            <Divider/>
+            <div className={classes.testContainer}>
+                <DataGrid data={data}/>
+            </div>
         </Paper>
     )
 }

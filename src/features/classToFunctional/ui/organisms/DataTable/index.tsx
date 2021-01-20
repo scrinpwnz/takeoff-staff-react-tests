@@ -47,8 +47,8 @@ class ModalDataTable extends React.PureComponent<Props, State> {
     }
 
     generateTable() {
-        return this.state.data.map(item => (
-            <div>
+        return this.state.data.map((item, index) => (
+            <div key={index}>
                 <div>{item.id}</div>
                 <div>{item.name}</div>
                 <div>{format(item.createdAt, 'yyyy.MM.dd')}</div>
@@ -123,13 +123,13 @@ class ModalDataTable extends React.PureComponent<Props, State> {
                 </Box>}
 
                 <Box className={classes.buttons}>
-                    <Button variant={'outlined'}
+                    <Button variant={'contained'}
                             color={'primary'}
                             disabled={this.state.loading}
                             onClick={this.getNewData}>
                         Обновить данные
                     </Button>
-                    <Button variant={'outlined'}
+                    <Button variant={'contained'}
                             color={'secondary'}
                             onClick={this.props.onClose}>
                         Закрыть (Esc)
