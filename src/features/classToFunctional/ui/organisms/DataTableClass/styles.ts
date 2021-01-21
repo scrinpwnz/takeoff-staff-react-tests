@@ -11,7 +11,7 @@ export const styles = (theme: Theme) => createStyles({
     },
     table: {
         display: 'grid',
-        maxHeight: 300,
+        maxHeight: 150,
         overflow: 'auto',
         '&>div': {
             display: 'grid',

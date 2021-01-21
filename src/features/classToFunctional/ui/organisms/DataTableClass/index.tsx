@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Button, CircularProgress, Divider, Paper, Typography, withStyles, WithStyles} from "@material-ui/core";
-import {styles} from "./syles";
+import {styles} from "./styles";
 import {fetchData} from "../../../api";
 import {IData} from "../../../api/dto";
 import {format} from 'date-fns';
@@ -16,7 +16,7 @@ interface State {
     error: string
 }
 
-class ModalDataTable extends React.PureComponent<Props, State> {
+class DataTableClass extends React.PureComponent<Props, State> {
 
     constructor(props: Props) {
         super(props)
@@ -51,13 +51,13 @@ class ModalDataTable extends React.PureComponent<Props, State> {
             <div key={index}>
                 <div>{item.id}</div>
                 <div>{item.name}</div>
-                <div>{format(item.createdAt, 'yyyy.MM.dd')}</div>
+                <div>{format(item.createdAt, 'dd.MM.yyyy')}</div>
             </div>
         ))
     }
 
     onEscapeKey(event: KeyboardEvent) {
-        if (event.keyCode === 27) {
+        if (event.key === 'Escape') {
             console.log('Закрытие по нажатию клавиши Esc')
             this.props.onClose()
         }
@@ -140,4 +140,4 @@ class ModalDataTable extends React.PureComponent<Props, State> {
     }
 }
 
-export default withStyles(styles)(ModalDataTable)
+export default withStyles(styles)(DataTableClass)

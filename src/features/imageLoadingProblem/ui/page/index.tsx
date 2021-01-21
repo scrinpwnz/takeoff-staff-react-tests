@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react'
-import {useStyles} from "./syles";
+import {useStyles} from "./styles";
 import {Box, Divider, Paper, Typography} from "@material-ui/core";
 import DataGrid from "../organisms/DataGrid";
 import {IObject} from "../../api/dto";

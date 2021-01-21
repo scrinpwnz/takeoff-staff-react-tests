@@ -1,7 +1,8 @@
 import {Box, Button, Divider, Paper, Typography} from "@material-ui/core";
 import React, {FC, useState} from 'react'
-import DataTable from "../organisms/DataTable";
-import {useStyles} from "./syles";
+import DataTableClass from "../organisms/DataTableClass";
+import {useStyles} from "./styles";
+import DataTableFunctional from "../organisms/DataTableFunctional";
 
 const ClassToFunctional: FC = () => {
 
@@ -10,6 +11,21 @@ const ClassToFunctional: FC = () => {
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
+
+    const tables = (
+        <div className={classes.testContainer}>
+            <DataTableClass onClose={handleClose}/>
+            <DataTableFunctional onClose={handleClose}/>
+        </div>
+    )
+
+    const button = (
+        <div className={classes.buttonContainer}>
+            <Button variant={'contained'} color={'primary'} onClick={handleOpen}>
+                Открыть таблицы
+            </Button>
+        </div>
+    )
 
     return (
         <Paper elevation={6} className={classes.root}>
@@ -25,13 +41,7 @@ const ClassToFunctional: FC = () => {
                 </Typography>
             </Box>
             <Divider/>
-            <div className={classes.testContainer}>
-                {open
-                    ? <DataTable onClose={handleClose}/>
-                    : <Button variant={'contained'} color={'primary'} onClick={handleOpen}>
-                        Открыть таблицу
-                    </Button>}
-            </div>
+            {open ? tables : button}
         </Paper>
     )
 }
